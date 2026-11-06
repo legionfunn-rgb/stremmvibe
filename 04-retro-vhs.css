@@ -1,0 +1,74 @@
+/* =========================================================
+   Изменение 04: ретро-VHS (другой дизайн)
+   Тёмно-коричневый фон, оранжево-жёлтые акценты, моноширинный
+   шрифт (системный, без загрузки), строки-сканлайны поверх страницы.
+   Подключение: в index.html ПОСЛЕ строки с modals.css добавить
+   <link rel="stylesheet" href="изменения/04-retro-vhs.css">
+   Не включайте вместе с 01-light-theme.css: обе меняют тему.
+   ========================================================= */
+
+:root {
+  --bg: #0d0a08;
+  --surface: rgba(255, 170, 60, 0.06);
+  --surface-strong: rgba(255, 170, 60, 0.12);
+  --border: rgba(255, 170, 60, 0.25);
+  --border-strong: rgba(255, 170, 60, 0.50);
+  --text: #ffe9c7;
+  --muted: #d6a86a;
+  --accent-1: #ff7a1a;
+  --accent-2: #ffd23f;
+  --glow: 0 0 18px rgba(255, 122, 26, .55), 0 0 40px rgba(255, 210, 63, .25);
+  --font-body: "Courier New", Consolas, monospace;
+  --font-display: "Courier New", Consolas, monospace;
+  --radius: 6px;
+  --radius-sm: 3px;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: none;
+  letter-spacing: .02em;
+}
+
+/* Строки-сканлайны поверх всей страницы */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, .22) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+}
+
+h1, h2, h3 { text-transform: uppercase; letter-spacing: .04em; }
+.eyebrow { color: #ffd23f; }
+
+/* Кнопки: квадратные углы и капс */
+.btn { border-radius: 4px; text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; }
+.btn-primary { color: #1a0f05; }
+.btn-sm { padding: 8px 14px; }
+
+/* Блоки и карточки: меньше скругления, без стекла */
+.glass { border-radius: var(--radius); background: rgba(255, 170, 60, .04); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.layer, .poster, .card-fav, .rate, .tag, .badge { border-radius: var(--radius-sm); }
+.poster { box-shadow: 0 0 0 1px rgba(255, 170, 60, .35), 0 8px 20px rgba(0, 0, 0, .6); }
+.layer { border-radius: 4px; }
+
+/* Шапка, окна, уведомления */
+.site-header.is-scrolled { background: rgba(13, 10, 8, .92); }
+.mobile-menu { background: rgba(13, 10, 8, .97); }
+.modal-backdrop { background: rgba(0, 0, 0, .75); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.modal-panel, .account-menu { background: #120d09; border-radius: var(--radius); }
+.toast { background: #1a120b; border-radius: var(--radius-sm); }
+
+/* Поля ввода */
+input[type="text"], input[type="email"], input[type="password"], input[type="search"] {
+  border-radius: var(--radius-sm);
+  background: #1a120b;
+}
